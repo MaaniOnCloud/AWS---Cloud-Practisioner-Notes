@@ -24,6 +24,10 @@ AWS Cloud Practitioner Certification is a professional certification that is des
 - Agility
 
 ### Types of Cloud Computing
+<p align="center">
+  <img width="776" height="468" src="/img/IaaS_PaaS_SaaS.JPG"> 
+</p>
+
 1. Infrastructure as a Service (IaaS)
     * Building blocks for Cloud IT
     * Provides Networking, Compute, Storage
@@ -34,4 +38,15 @@ AWS Cloud Practitioner Certification is a professional certification that is des
 3. Software as a Service (SaaS)
     * Product that is run and managed by provider for our usage.
 
+### Pricing for AWS Cloud
+- Compute - Pay for the compute time used.
+- Storage - Pay for data stored in the cloud.
+- Networking - Pay for the Data flows out of the cloud.
 
+### AWS Infrastructure
+1. AWS Regions
+    * Regions are all across the world
+    * Every Region has unique name/code eg. us-east-1 or af-south-1 or us-west-2
+    * Region == Cluster of Data Centers located near each other.
+    * Services are available on region basis.
+    
