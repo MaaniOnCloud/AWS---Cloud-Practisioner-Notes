@@ -3,7 +3,7 @@
   <img width="384" height="384" src="/img/AWS-Certified_Cloud-Practitioner_512x512.png">
 </p>
 ## Introduction
-AWS Cloud Practitioner Certification is a professional certification that is designed to provide the basic knowledge of the AWS Cloud Infrastructure. AWS offers around 227 different services that can be used to build, deploy, and manage applications. However, the AWS Cloud Practitioner Certification covers around 40 different AWS services.
+AWS Cloud Practitioner Certification is a professional certification that is designed to provide the basic knowledge of the AWS Cloud Infrastructure. AWS offers around 319 different services that can be used to build, deploy, and manage applications. However, the AWS Cloud Practitioner Certification covers around 40 different AWS services.
 
 ### What is Cloud Computing?
 - On Demand Delivery of Compute Power, Storage, Networking, Security and Other Services
@@ -48,5 +48,53 @@ AWS Cloud Practitioner Certification is a professional certification that is des
     * Regions are all across the world
     * Every Region has unique name/code eg. us-east-1 or af-south-1 or us-west-2
     * Region == Cluster of Data Centers located near each other.
-    * Services are available on region basis.
-    
+    * Services are available on regional basis.
+2. AWS Availability Zones
+    * Each region has multiple availability zones usually around 3, min 2 and max 6
+    * AZs are separate from each other
+    * Connected with High Bandwidth, Ultra-Low Latency Network
+3. AWS Edge Locations (Points of Presence)
+    * 216 Points of Presence
+    * 84 Cities
+    * 42 Countries
+
+### IAM - Users & Group
+
+IAM is Identity and Access Management and it is a global service.
+Root account is created by default and we should create groups and users should be placed in groups. Sometimes a user can't be part of a group and some users can be part of multiple groups.
+IAM Permissions are managed with JSON document called policies.
+Like everywhere else, **Least Privilege Principle** is used here as well.
+
+- Policies 
+    * Group - Group inherits permission from Group Policy
+    * Inline - Inline policy is only attached to a user
+- Police Structure 
+    * Version Number - Version of the Policy Language
+    * ID - An Identifier for the Policy
+    * Statement 
+        * SID - Identifier for the statement
+        * Effect of Policy - whether the statement allows or denies access
+        * Principal - account/user/role to which policy applies
+        * Action - list of actions this policy allows or denies
+        * Resource - list of resources to which  actions applied to
+- Password  Policy
+    * Strong Passwords
+    * Min password length
+    * Characters requirements
+    * Password Change after a time period
+    * Preventing Password re-use
+- IAM Roles for Services
+    * Some services will need to perform actions on my behalf
+    * Assign permissions to AWS Services with IAM Roles
+- Security Tools
+    * IAM Credentials Report - Report that lists all your account's users and the status of their various credentials
+    * IAM Access Advisor - Shows the service permissions granted to a user and when those services were last accessed and we can find which permissions are not used so we can remove them.
+- Best IAM Practices
+    * Dont use root account
+    * 1 account per person
+    * Assign permissions to group and then add the users to the group to inherit permissions
+    * Use strong password policy
+    * Enforce MFA
+    * Create roles to give permission for AWS Services
+
+
