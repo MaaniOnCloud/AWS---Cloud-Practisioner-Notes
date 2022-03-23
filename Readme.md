@@ -2,7 +2,9 @@
 <p align="center">
   <img width="384" height="384" src="/img/AWS-Certified_Cloud-Practitioner_512x512.png">
 </p>
-## Introduction
+
+### Introduction
+
 AWS Cloud Practitioner Certification is a professional certification that is designed to provide the basic knowledge of the AWS Cloud Infrastructure. AWS offers around 319 different services that can be used to build, deploy, and manage applications. However, the AWS Cloud Practitioner Certification covers around 40 different AWS services.
 
 ### What is Cloud Computing?
@@ -97,4 +99,40 @@ Like everywhere else, **Least Privilege Principle** is used here as well.
     * Enforce MFA
     * Create roles to give permission for AWS Services
 
+### Elastic Compute Cloud (EC2)
+EC2 Consists of VMs, Virtual Drives for Storage, Load Balancer, Auto-Scaling groups.
+For OS, EC2 offers Linux, Windows and MacOS. For Processing, EC2 has options for various CPUs and GPUs with multiple processing cores.
+For Storage, there is network attached storage (EBS & EFS) and Hardware attached (EC2 Instance Store)
+For Networking, EC2 offers various network cards and public IP addresses.
+EC2 also offers Firewall rules thru **Security Groups** and Bootstrap script that contains User Data for the first launch.
 
+- EC2 User Data Script
+    * Script is only run once at the first start of the instance
+    * Used for Automating boot tasks
+    * Runs with Sudo Permissions
+
+```bash
+#! /bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>What up Pimps</h1><h2> from $(hostname -f)</h2>" > /var/www/html/index.html
+```
+
+- Instance Types
+    * Different types of EC2 instances are listed here (https://aws.amazon.com/ec2/instance-types/)
+    * Naming Convention Eg - **m6.medium**
+        * **m** = instance class
+        * **6** = hardware gen
+        * **medium** = size within the class
+    * General Purpose - Good for code repos and web servers, has good balance of Compute, Networking & Memory
+    * Compute Optimized - Good for Compute-intensive tasks like media transcoding, machine learning, gaming servers, etc.
+    * Memory Optimizied - Good for memory intensive tasks like  data processing, distribution of web scale cache stores, etc.
+    * Storage Optimized - Good for storage intensive tasks like high seq read and write acess to large data sets. Eg. Data Warehousing
+
+- Security Groups
+    * Control how traffic is allowed in or out of EC2 Instances.
+    * Similar to Port Forwarding on Home Network.
+    * Firewall on EC2 Instances
+    * Regulate Access to Ports and control of inbound and outbound network.
