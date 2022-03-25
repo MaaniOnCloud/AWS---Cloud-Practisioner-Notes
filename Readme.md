@@ -134,5 +134,118 @@ echo "<h1>What up Pimps</h1><h2> from $(hostname -f)</h2>" > /var/www/html/index
 - Security Groups
     * Control how traffic is allowed in or out of EC2 Instances.
     * Similar to Port Forwarding on Home Network.
-    * Firewall on EC2 Instances
+    * Firewall outside EC2 Instance
     * Regulate Access to Ports and control of inbound and outbound network.
+    * Locked to Region/VPC
+    * By Default -
+        * All Inbound Traffic is **BLOCKED**
+        * All Outbound Traffic is **ALLOWED**
+- Roles for EC2 Instance
+    * Action > Security > Modify IAM Role and Attach the IAM Role to the EC2 Instance
+    * Only attach policy thru IAM Role
+- Instance Purchasing Options
+    * Reserved Instances
+        * Standard 
+            * Long Workloads
+            * 75% discount for period over 1 year 
+            * Higher discount for 3 year or longer commitment
+            * Discount for Upfront and Partial Upfront payments
+            * Specific Instance Type
+        * Convertible 
+            * Long Workloads with Flexible Instances
+            * Can Switch Instances
+            * Upto 54% discount
+        * Scheduled Reserved 
+            * Launch within a certain reserved time
+            * Commitment of 1 to 3 years is required
+    * Spot 
+        * Upto 90% compared to On-Demand
+        * But can be lost if MAX PRICE < CURRENT SPOT PRICE
+        * Most cost-efficient
+        * Use for workload that are resilient to failure
+
+    * Dedicated Hosts 
+        * Phyical Server with EC2 Capacity
+        * Good for Compliance Requirements
+        * Existing Server-bound Software licenses can be used
+        * 3 year period reservation required
+        * More expensive
+        * No other AWS customers can use this
+    * Dedicated Instances
+        * Use of Dedicated Phyical Server
+        * Per instance billing
+        * Automatic instance billing
+
+### EC2 Instance Storage
+- **EBS Volume** 
+    * Elastic Block Store volume is a network drive that can be attached to a instance.
+    * Helps keep the data even after the ec2 instance termination
+    * Bound to a specific Availability Zone
+    * Capacity needs to be provisioned in advance
+- Snapshot
+    * Basically a BACKUP of a EBS Volume 
+    * Snapshots can be copied from one region or AZ to other
+    * A new volume can be created from a snapshot
+- AMI Amazon Machine Image
+    * Pretty much custom OS image
+    * Can be created on a specific region and be copied across
+    * AMIs are provided by Amazon, can be created by us or can be purchased from AWS Marketplace
+- EC2 Image Builder
+    * Automates the creation, maintainence and validation of AMIs
+    * Can be run on a schedule
+    * Free Service (pay only for EC2 instance that is created by Ec2 Builder)
+- EC2 Instance Store
+    * EBS Volumes are network drives which are good for most cases but have limited performance 
+    * EC2 Instance Store is phyical disk that can be connected to the machine for better performance 
+    * Storage is lost on termination
+    * Good for buffer / cache or temp content
+    * Risk of data loss if hardware fails
+    * Backup and replication is our responsibility 
+- EFS Elastic File System
+    * Managed NFS that can be mounted to multiple EC2
+    * EFS works with Linux EC2 in multi-AZ
+    * 3 x epensive than gp2
+    * Shared file system for EC2s
+- EFS Infrequent Access
+    * Used for less used data
+    * 92% discounted
+    * EFS will move files to EFS-IA that are less frequently used based on the Lifecyle Policy
+- Amazon FSx for Windows File Server
+    * Scalable Windows Native Shared File System
+    * Supports SMB and NTFS
+    * Integrated with Active Directory
+    * Can be accessed from on-premises or AWS
+- Amazon FSx for Lustre
+    * Lustre derived from Linux and Cluster
+    * High Performance Scalable file storage system.
+    * Good for ML, Data Modeling, Video Processing etc.
+    * Can be accessed from on prem or AWS Cloud. Luste stores data on Amazon S3.
+    * Uses Linux Filesystem ofcourse 
+
+### Elastic Load Balancing & Auto Scaling 
+
+- High availability & Scalability
+    * Vertical Scaling - Increasing or Decreasing Instance Size (t2.micro to t2.large)
+    * Horizontal Scaling - Adding or Removing more Instance (1 x t2.micro to 2x or more t2.micro)
+    * High Availability 
+        * Auto Scaling Group in Multi AZ
+        * Load Balancer in Multi AZ
+        * Instances in multi AZ
+    * Agility - Reduced time for availability of resources
+
+- Elastic Load Balancer
+    * Directs traffic to multiple Instances
+    * Balances the load by spreading load
+    * Single point of Access
+    * Can be used across multiple AZs
+    * AWS offers 3 kind of ELB
+        * Application Load Balancer - Layer 7
+        * Network Load Balancer (Ultra High Performance allows TCP)- Layer 4
+        * Classic Load Balancer - Layer 4 & 7
+- Auto Scaling Group
+    * Scale out to match increased load
+    * Scale in to match decreased load
+    * Auto register new machines to load balancer
+    * Replace unhealthy instance with health instance
+
+    
