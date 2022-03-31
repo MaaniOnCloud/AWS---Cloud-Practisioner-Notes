@@ -177,7 +177,7 @@ echo "<h1>What up Pimps</h1><h2> from $(hostname -f)</h2>" > /var/www/html/index
         * Automatic instance billing
 
 ### EC2 Instance Storage
-- **EBS Volume** 
+- EBS Volume 
     * Elastic Block Store volume is a network drive that can be attached to a instance.
     * Helps keep the data even after the ec2 instance termination
     * Bound to a specific Availability Zone
@@ -247,5 +247,103 @@ echo "<h1>What up Pimps</h1><h2> from $(hostname -f)</h2>" > /var/www/html/index
     * Scale in to match decreased load
     * Auto register new machines to load balancer
     * Replace unhealthy instance with health instance
+- Auto Scaling Strategies
+    * Manual Scaling - Updating the ASG size manually
+    * Dynamic Scaling 
+        * Simple/Step Scaling - Based on CPU or Network or Requests
+        * Target Tracking Scaling - Average requirement to be a specific target like (69% CPU utilization, more than that new instance is deployed)
+        * Scheduled Scaling - Based on Usage Patterns
+        * Predictive Scaling - Machine Learning Prediction of future traffic
+### Amazon S3
+Cloud Native Storage. Inifinitely Scaling Storage.
+Backbone for many websites. Snapshots are stored in S3
+- Usage     
+    * Backup and Storage
+    * Disaster Recovery
+    * Archive
+    * Hybrid Cloud Storage
+    * Apps Hosting
+    * Data Analysis
+    * Static Websites
+    * Media Hosting
+- Overview       
+    * File = Objects
+    * Directories = Buckets
+    * Buckets must have globally unique name
+    * Buckets are regional level
+    * Naming Convention
+        * No Uppercase
+        * No underscore
+        * 3-63 Characters Long
+        * Can't be an IP
+        * Must start with lowercase letter or number
+    * Object can't be over 5TB
+    * More than 5GB upload should be in multi-part
+- S3 Security
+    * IAM Policy
+    * Resource Based Security
+        * Bucket Policies
+        * Object Access Control List
+        * Bucket Access Control List
+    * Encryption
+    * IAM Policy for Users or Group or EC2 Instance Role & S3 Bucket Policy for Anonymous Access or Users on Different AWS Account
 
-    
+- S3 Policies
+    * JSON based Policies
+    * Grant Public Access
+    * Grant Access to Users on Different Account
+- S3 Verioning
+    * Bucket Level
+    * Best Practise to Version Buckets
+    * Protection against accidental deletion
+- S3 Access Logs
+    * Log all access to S3 Buckets
+    * Any request made to S3 from any account whether authorized or denied will be logged.
+    * these logs can be used for Data Analysis
+    * Helpful for finding root cause of an issue, or viewing suspicious patterns.
+- S3 Replication
+    * CRR = Cross Region Replication
+    * SRR = Same Region Replication
+    * Bucket can be in different accounts
+    * Copying happens in background
+    * Must give proper IAM permissions to S3
+
+<p align="center">
+  <img width="807" height="349" src="/img/S3_storage_class.JPG"> 
+</p>
+
+- S3 Storage Classes
+    * S3 Standard
+        * General Purpose
+        * Low latency
+        * High throughput
+        * Frequently used data
+        * Content Distribution, Big Data Anaylsis
+    * S3 Standard IA
+        * Infrequent Access
+        * Less Frequent Accessed but requires Rapid Access
+        * Lower cost then S3 Standard, but retrieval fees applies
+        * Recovery and Backup
+    * S3 One Zone-Infrequent Access
+        - Data is stored only in one AZ
+        - Lower cost compared to S3-IA
+        - Used for storing secondary data
+    * Amazon S3 Intelligent Tiering
+        - Low latency and High Throughput like S3 Standard
+        - Cost Optimized by moving objects between Frequent and Infrequent
+        - Resilient against events that impact an AZ
+    * Amazon Glacier
+        - Archiving and Backup usage
+        - Long term usages (years)
+        - Retrieval time and fees 
+            * Expedited (1 to 5 mins)
+            * Standard (3 to 5 hrs)
+            * Bulk (5 to 12hrs)
+    * Amazon Glacier Deep Archive 
+        - Cheapest S3 Tier
+        - Standard (12hrs)
+        - Bulk (48hrs)
+- Transition Rule   
+    * Transition objects between storage classes
+    * Can be automated with Lifecycle Configuration
+    * Eg - Moving files from S3 IA to Glacier 
