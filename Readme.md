@@ -347,3 +347,4 @@ Backbone for many websites. Snapshots are stored in S3
     * Transition objects between storage classes
     * Can be automated with Lifecycle Configuration
     * Eg - Moving files from S3 IA to Glacier 
+
