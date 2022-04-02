@@ -347,4 +347,53 @@ Backbone for many websites. Snapshots are stored in S3
     * Transition objects between storage classes
     * Can be automated with Lifecycle Configuration
     * Eg - Moving files from S3 IA to Glacier 
-
+- S3 Object Lock and Glacier Vault Lock
+    * Write Once Read Many
+    * Block an Object version deletion for specific amount of time
+    * Lock the Policy for future edits in case of Glacier Vault Lock
+    * Helpful for compliance and data rention
+- Snow Family
+    * Highly secure portable devices to collect and process data and migrate data in and out of AWS.
+    * Data Migration Devices 
+        * Snowcone 
+        * Snowball Edge
+        * Snowmobile
+    * Edge Computing 
+        * Snowcone 
+        * Snowball Edge
+    * Why use data migration devices?
+        * Limited Connectivity
+        * Limited Bandwidth
+        * High Network Cost
+        * Connection Stability
+    * Snowball Edge 
+        * Used for moving TB or PB data to AWS
+        * Pay per data transfer job
+        * S3 compatible storage 
+        * Storage Optimized Version - 80TB HDD Capacity
+        * Compute Optimized Version - 42TB HDD Capacity
+        * Large data cloud migration 
+        * 52vCPUs, 208GB RAM, Optional GPU (Compute Optimized)
+        * 40vCPUs, 80GB RAM (Storage Optimized)
+    * Snowcone
+        * Smaller than Snowball Edge
+        * Rugged, secure and can withstand harsh environments
+        * 4.5lbs
+        * 8TB of storage
+        * Own battery and cable is needed
+        * Can be used with AWS DataSync or send it to AWS and they can import data.
+        * 2CPUs, 4GB RAM, wired or wireless acess, USB-C powered
+    * Snowmobile
+        * For transferring Exabytes of Data
+        * Each Snowmobile has 100PB capacity
+        * High Security, Temperature Controlled, GPS 24/7 video surveillance
+    * Edge Computing
+        * Edge Location - Limited or no internet or access to computing power
+        * Snowball and Snowcone are good for the use case
+        * Process data while its being created on edge location
+        * Can be shipped back to AWS
+        * Can run EC2 Instances and AWS Lambda
+        * Discount for 1-3 year period
+    * AWS OpsHB
+        * GUI for controlling Snow Devices
+        * Monitoring and Launching Services
