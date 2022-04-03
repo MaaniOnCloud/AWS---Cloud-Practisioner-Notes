@@ -397,3 +397,181 @@ Backbone for many websites. Snapshots are stored in S3
     * AWS OpsHB
         * GUI for controlling Snow Devices
         * Monitoring and Launching Services
+### Databases and Analytics
+- Introduction     
+    * Storing Data on Disk can have its limitations
+    * Databases help in structuring data and building indexes which can be used for query and search through data.
+    * Databases can also be used for defining relationships between datasets. 
+    - Relational Databases
+        * Just like Excel
+        * Can use SQL language to perform queries and lookup
+    - NoSQL Databases
+        * Non Relational Databases
+        * Built for Specific data models and have flexible schemas
+        * Flexible - Easy to evolve data models
+        * Scalable - Designed to scale out by using distributed cluster
+        * High performance and high functional
+        * JSON format can be used
+<p align="center">
+  <img width="719" height="388" src="/img/RDS.JPG"> 
+</p>
+
+- AWS RDS 
+    * Relational Database Service
+    * Managed DB service for Database use SQL as a query language
+    * Create Databases in cloud using  
+        * Postgres
+        * MySQL
+        * MariaDB
+        * Oracle
+        * MS SQL Server
+        * Aurora (AWS Proprietary)
+        
+    * Advantages
+        * Automated Provising and OS patching
+        * Continous Backups and Restores
+        * Monitoring Dashboards
+        * Multi AZ Setup for Disaster Recovery
+        * Maintenance windows for upgrades
+        * Scaling Capabilities
+        * Storage Backed by EBS (gp2 or io1)
+        * Cant SSH into DB since its a managed service
+- AWS Aurora
+    * Not Open Source, AWS Proprietary
+    * PostgreSQL and MySQL are supported as Aurora DB
+    * Cloud Optimized, 5x better performance over MySQL RDS and 3x better than Postgres RDS.
+    * Storage increases automatically in increments of 10GB upto 64TB
+    * Aurora is 20% more expensive but its more efficient
+- RDS Deployments
+    * Read Replicas
+        * Scale the read workload
+        * Can create upto 5 read replicas
+        * Data is only written on the main DB
+    * Multi AZ
+        * High availability in case of AZ outage
+        * Replication will be setup in another AZ for Failover
+        * Failover DB in different AZ will be used only when there is a failover
+    * Multi Region  
+        * Multi region replicas
+        * DB can read in other regions but writes only on the main DB in the original region of creation
+    * Replication Cost Applies
+- AWS ElastiCache
+    * In memory Database
+    * Reduces read intensive load off database
+    * ELB ---> EC2 --->  RDS and ElastiCache 
+- DynamoDB
+    * NoSQL database
+    * Fully managed
+    * Serverless database
+    * Fast and Consistent
+    * Low latency 
+    * Integrated with IAM for security 
+    * Key value database
+- DynamoDB Accelerator DAX
+    * In Memory Cache for DynamoDB
+    * Just made for DynamoDB
+    * 10x faster
+- Redshift
+    * Based on Postgres
+    * Not used for Online Transaction Processing (Use RDS for it)
+    * Good for Analytics and Data Warehousing 
+    * Load data once every hour
+    * PBs of Data, 10x better performance than others
+    * Columnar storage of data instead of row
+    * Massively Parallel Query Execution
+    * Pay as you go
+    * SQL interface
+    * It intergrates for Business Inteligence tools like AWS Quicksight or Tableau
+- Amazon EMR
+    * Elastic MapReduce
+    * Used for creating Hadoop Cluster (Big Data) to analyze and process vast amount of data
+    * Cluster made of 100s of EC2 instances
+    * Supports Apache Spark, HBase, Flink
+    * EMR takes care of all the provisioning and configuration
+    * Data Processing , Machine Learning, Web Indexing
+- Athena  
+    * Fully serverless with SQL capabilities
+    * Used for query data in S3
+    * Pay per query
+    * Secured through IAM
+    * One-time SQL queries, Serverless queries on S3 and log analytics
+- Amazon Quicksight
+    * Serveless machine learning powered BI service to create interactive dashboards
+    * Fast, auto scalable
+    * Per Session Pricing
+    * Usage - Data Visualization
+    * Intergrated with RDS, Aurora, Athena, Redshift, S3
+- DocumentDB
+    * NoSQL 
+    * Based on MongoDB
+    * Used to store, query and index JSON data
+    * Storage auto grows in increaments of 10GB upto 64TB
+    * Available replication across 3 AZ
+    * Millions of request per second
+- Amazon Neptune
+    * Graph Database
+    * Dataset example - Social Network
+    * Available across 3 AZ, upto 15 read replicas
+    * Billions of relations and query graph with ms latency
+    * Great for Knowledge graphs like Wiki, Fraud detections
+- Amazon QLDB
+    * Quantum Ledger Database   
+    * Recording financial transactions
+    * Data entries can't be removed and can also be cryptographically verified
+    * Fully managed, serverless, replication across 3 AZs
+    * Data can be manipulate using SQL
+- Amazon Managed Blockchain 
+    * Join Public Blockchain network
+    * Create your own scalable private network
+    * Compatible with Hyperledger Fabric and Ethereum
+    * Multiple parties can execute transactions without the need for a trusted central authority
+- DMS 
+    * Database Migration Serive
+    * EC2 running DMS will extract data from a source DB and add it to a destination DB.
+    * Quick and Secure Database migration
+    * Database is available to use during migration
+    * Supports 
+        * Homogeneous migration - Oracle to Oracle
+        * Heterogeneous migration - MS SQL Server to Aurora
+- AWS Glue
+    * Managed Extract , Transform and Load service.
+    * Prepare and Transform data for analytics
+    * Serverless
+    * Glue Data Catalog - central repository to store structural and operational metadata for data assets in AWS Glue
+
+### AWS Compute Services    
+- Docker
+    * Package apps in Container 
+    * Apps run the same regardless of where they run
+    * Scale containers very quickly
+    * Images are stored in Repo
+        * Docker Hub
+        * Amazon ECR (Elastic Container Registry)
+
+- ECS Elastic Contair Service
+    * Launch Docker containers on AWS
+    * Must provision and maintain EC2 instances
+    * AWS takes care of starting and stopping instances
+    * Has intergration with Application Load Balancer
+    * ECS smartly places containers on EC2s
+- Fargate   
+    * Used for Launching Docker containers on AWS
+    * EC2 instances not required for this 
+    * Serverless offering
+    * AWS runs containers based on the CPU/RAM requirements
+- ECR Elastic Contair Registry
+    * Private Docker registry
+    * Stores docker images
+    * Images will be used by ECS or Fargate
+- AWS Lambda
+    * Virtual Functions
+    * Intended for shorter execution
+    * Run on Demand
+    * Scaling is automated
+    * Benefits
+        * Pay per request and compute time
+        * Integrated with other AWS services
+        * Event Driven invokes
+        * Integrated with many programming languagess
+        * Upto 10GB ram available per function
+    * Lambda Container Image 
