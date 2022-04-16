@@ -575,3 +575,97 @@ Backbone for many websites. Snapshots are stored in S3
         * Integrated with many programming languagess
         * Upto 10GB ram available per function
     * Lambda Container Image 
+- API Gateway
+    * Fully managed service for developers to create, publish, maintain, monitor and secure APIs in cloud
+    * Serverless
+    * Scalable
+    * Supports RESTful and Websockets
+    * Support for security, user authentication, API Throttling, API Keys and Monitoring
+- AWS Batch
+    * Batch job is a job that has a start and an end, not continous
+    * Managed Batch Processing at any scale
+    * Batch will dynamically launch EC2 instances or Spot Instances based on requirements
+    * Schedule a batch job
+    * Batch jobs are defined as docker images and run on ECS
+    * Cost optimizated
+- Amazon Lightsail
+    * Simpler to EC2, RDS, ELB, EBS
+    * Low and predictable pricing
+    * Virtual Servers, storage, database and networking
+    * Use uses for simple web apps and simple websites
+    * No auto-scaling available
+    * Good for people with no cloud experience
+
+### Deployments and Managing Infrastructure at Scale
+
+- Cloudformation
+    * Outling our AWS insfrastructure for any resource
+    * Eg - Needing a Security Group, No. of EC2 or S3 and ELB
+    * Cloudformation creates these the infrastructure in right order with exact configuration
+    * Infrastructure as code
+    * Cost estimation is easier with cloudformation
+    * Generates diagrams for templates
+    * Existing templates from the web can be used
+    * Good for repeating architure in different enivronments and regions.
+- AWS CDK Cloud Development Kit
+    * Define your code in a familiar language like py or js
+    * code is complied into cloudformation template in json or yaml
+- Beanstalk 
+    * Platform as a service
+    * Managed Service
+        * Application Monitoring
+        * Load Balancing & Auto Scaling
+        * Capacity Provisioning
+        * Instance Config
+    * Application code is the responsibility
+    * Health Monitoring agent pushes metric to CloudWatch
+    * Beanstalk uses cloudformation in the background
+- CodeDeploy
+    * Deploy app automatically
+    * Doesn't beanstalk or cloudformation
+    * Works with EC2 instances
+    * Works with on premise servers
+    * It is a hybrid service
+- CodeCommit
+    * Github alternative for AWS
+    * Git based repository
+    * Easy to collaborate on code
+    * Fully managed
+    * Scalable and highly available
+- CodeBuild
+    * Code building service in cloud
+    * Codebuild will retreive code from codecommit, run test and compile code and produce packages which can be deployed
+    * Fully managed and serverless
+    * secure and scalable
+- CodePipeline
+    * Code --> Build --> Test --> Provision --> Deploy
+    * Continous Integration and Continous Delivery
+    * Compatible with Codecommit,codedeploy, beanstalk, cloudformation, github, etc
+- CodeArtifact
+    * Software packages depend on each other to be built
+    * Code Dependencies
+    * Storing and retrieving these dependencies is called artifact management
+    * Secure, Scalable and cost effective artifact management for software development
+    * Works with common dependencies such as npm, yarn, twine, pip and NuGet
+    * Codebuild and developers can retrieve dependencies straight from codeartifact
+- CodeStar  
+    * Unified UI to manage software development activites in one place.
+- Cloud9
+    * Cloud IDE, used for writing, running and debugging code
+    * It is browser based
+    * Cloud collaboration is available in real time
+- SSM Systems Manager
+    * Manage EC2 and On-premises sytems at scale
+    * Hybrid Service
+    * Operational Insights
+    * Run commands across an entire fleet of servers
+    * Works on both windows and linux
+    * Store parameters configs with SSM Parameter Store
+    * SSM agent needs to be installed and ssm agent reports back to service
+    * Comes pre-installed with Amazon Linux AMIs
+- AWS OpsWork   
+    * Chef and Puppet helps perform server configuration automatically
+    * Works great with EC2 and On-prem servers
+    * OpsWork = Managed Chef and Puppet
+    * Alternative to AWS SSM
+    * To reuse chef and puppet templates, use OpsWork when moving to Cloud
